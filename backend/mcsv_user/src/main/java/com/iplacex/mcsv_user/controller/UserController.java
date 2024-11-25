@@ -1,5 +1,6 @@
 package com.iplacex.mcsv_user.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -30,9 +31,9 @@ public class UserController {
     private final ZoneServiceClient zoneServiceClient;
 
     @GetMapping
-    public ResponseEntity<?> findAll() {
-        return ResponseEntity.ok(this.userService.findAll());
-    }
+    public ResponseEntity<List<UserDto>> findAllWithZone() {
+        return ResponseEntity.ok(this.userService.findAllWithZone());
+    } 
 
     @GetMapping("/{id}")
     public ResponseEntity<?> details(@PathVariable Long id) {
@@ -44,7 +45,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody UserDto userDto) {
         try {
-            ZoneDto zone = zoneServiceClient.getZoneById(userDto.getZoneId());
+            ZoneDto zone = zoneServiceClient.getZoneById(userDto.getZone().getId());
 
             UserEntity userEntity = UserEntity.builder()
                     .nombre(userDto.getNombre())
