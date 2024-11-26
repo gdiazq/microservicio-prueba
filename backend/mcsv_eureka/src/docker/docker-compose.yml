@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  mcsv-eureka:
+    container_name: mcsv-eureka
+    image: iplacex-eureka # Cambia esto si usas una imagen personalizada o subiste a un registry
+    ports:
+      - "8761:8761" # Mapea el puerto 8761 del contenedor al host

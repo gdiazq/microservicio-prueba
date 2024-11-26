@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mcsv-user:
+    image: iplacex-user
+    container_name: mcsv-user
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db-mcsv:3306/db-mcsv-iplacex
+      SPRING_DATASOURCE_USERNAME: db-mcsv-3it
+      SPRING_DATASOURCE_PASSWORD: admin3it
+      EUREKA_CLIENT_SERVICE_URL: http://mcsv-eureka:8761/eureka/
+      PATH: /usr/local/openjdk-21/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      JAVA_HOME: /usr/local/openjdk-21
+      LANG: C.UTF-8
+      JAVA_VERSION: 21
+    ports:
+      - "8080:8080"
+    restart: "no"
+    runtime: runc
