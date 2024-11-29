@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     container_name: mysql-db-mcsv
@@ -9,8 +11,16 @@ services:
       MYSQL_DATABASE: db-mcsv-iplacex
       MYSQL_USER: db-mcsv-3it
       MYSQL_PASSWORD: admin3it
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - docker_default
     ports:
       - "3306:3306"
     
 volumes:
   db-data:
+
+networks:
+  docker_default:  
+    external: true
